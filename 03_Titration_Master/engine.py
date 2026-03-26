@@ -1,7 +1,9 @@
 import math
+import numpy as np
 
 #Day 1 - Calculating the pH of an acid and base solution
 def pH_calculator(v_acid, c_acid, v_base, c_base):
+
     m_acid = (v_acid / 1000)* c_acid    #assuming density = 1.00 gcm^(-3)
     m_base = (v_base / 1000) * c_base
     v_total = v_acid + v_base   #creating v_total now to avoid repeating "v_acid + v_base"
@@ -33,4 +35,32 @@ get_c_base = float(input("Concentration of a Strong Monoprotic Base (dm^-3): "))
 pH = pH_calculator(get_v_acid, get_c_acid, get_v_base, get_c_base)
 
 print(f"The pH of the solution is: {pH:.2f}")
+
+# Work in progress... Learning Numpy for the first time!
+#eq_point = (initial_v_acid) * c_acid / c_base
+
+#v_base_before_eq = np.arrange(0, eq_point, 0.1)
+#v_total = initial_v_acid + v_base_before_eq
+#m_acid = c_acid * initial_v_acid - c_base * v_base_before_eq
+#return math.log10(m_acid / v_total)
+#for y in np.diter(acid):
+#    m_acid = (v_acid / 1000)* c_acid
+#    m_base = (v_base / 1000) * c_base
+#    v_total = y + v_acid
+#    m_acid_excess = m_acid - m_base
+#    c_proton = m_acid_excess / (v_total / 1000)
+#    return - math.log10(c_proton)
+
+#base = np.arrange(eq_point + 0.1, eq_point * 2, 0.1)
+#for z in np.diter(base):
+
+
+#v_base = np.array([])
+#    m_acid = (v_acid / 1000)* c_acid
+#    for y < m_acid / c_base in np.nidter(v_base):
+#        v_total = y + v_acid
+#        m_base = y *
+#        m_acid_excess = m_acid - m_base
+#        c_proton = m_acid_excess / (v_total / 1000)
     
+#    return - math.log10(c_proton)
