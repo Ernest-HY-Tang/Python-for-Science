@@ -8,7 +8,6 @@ def pH_calculator(v_acid, c_acid, c_base, yes_or_no, ka):
     eq_point = (v_acid) * c_acid / c_base   #in cm^3
 
     v_base = np.linspace(0, eq_point *2, 1000)  #in cm^3
-    safe_v_base = np.where(v_base == 0, 1e-5, v_base)
 
     moles_acid_initial = v_acid * c_acid / 1000
     moles_base_added = v_base * c_base / 1000
