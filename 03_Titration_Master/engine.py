@@ -16,8 +16,8 @@ def pH_calculator(v_acid, c_acid, c_base, yes_or_no, ka):
     pka = -np.log10(ka)
     c_salt = moles_acid_initial / (eq_point + v_acid) * 1000    #at equivalence point
 
-    acid_mask = (v_base > 0) & (v_base < eq_point - 0.1)
-    base_mask = v_base > eq_point + 0.1
+    acid_mask = (v_base > 0) & (v_base < eq_point)
+    base_mask = v_base > eq_point
 
     v_total = v_acid + v_base   #in cm^3
     conc_h = np.maximum(np.abs(net_moles / v_total * 1000), 1e-15)
@@ -34,7 +34,8 @@ def pH_calculator(v_acid, c_acid, c_base, yes_or_no, ka):
                 
                 pH_initial = -0.5 * np.log10(np.maximum(ka * c_acid, 1e-15))
                 pH_buffer = pka + np.log10(np.maximum(moles_base_added / net_moles, 1e-15))   #Henderson-Hasselbalch formula
-            
+                pH_buffer = np.maximum(pH_buffer, pH_initial)
+
                 pH_values = np.where(v_base == 0, pH_initial,
                             np.where(acid_mask, pH_buffer,
                             np.where(base_mask, 14 + np.log10(conc_h),
@@ -44,7 +45,7 @@ def pH_calculator(v_acid, c_acid, c_base, yes_or_no, ka):
 
 
 while  True:
-    strong_acid = str((input("Is the a Strong Acid (Y/N)? ")))
+    strong_acid = str((input("Is this a Strong Acid (Y/N)? ")))
 
     if strong_acid == "Y":
         get_ka = 0
