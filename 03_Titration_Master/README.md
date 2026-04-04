@@ -20,7 +20,7 @@ This is a high-performance titration simulator built with **NumPy** and **Matpl
 
 ## Installation & Usage:
 To run this simulation, you will need Python 3.x and the following libraries:
-* **NumPy**: For high-performance vectorized math
+* **NumPy**: For high-performance vectorised math
 * **Matplotlib**: For generating the titration curves.
 
 ```bash
