@@ -110,12 +110,12 @@ class ActualTitration:
         
         
 #For testing:
-HCl = Acid("Hydrochloric Acid", 27, 0.3)
-vinegar = Acid("Acetic Acid", 29, 0.2, 1.7e-5)
+HCl = Acid("Hydrochloric Acid", 25, 0.1)
+vinegar = Acid("Acetic Acid", 20, 0.1, 6.2e-5)
 NaOH = Base("Sodium Hydroxide", 0.1)
 
-experiment2 = ActualTitration(acid=vinegar, base=NaOH)
-output_base, output_pH, output_eq_volume, output_pH_eq = experiment2.generating_curve()
+experiment = ActualTitration(acid=vinegar, base=NaOH)
+output_base, output_pH, output_eq_volume, output_pH_eq = experiment.generating_curve()
 
 print(f"Calculated Equivalence Point: {output_eq_volume:.2f} cm³")
-experiment2.plotting(output_base, output_pH, output_eq_volume, output_pH_eq)
+experiment.plotting(output_base, output_pH, output_eq_volume, output_pH_eq)

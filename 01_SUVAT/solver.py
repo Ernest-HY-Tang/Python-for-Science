@@ -1,8 +1,4 @@
 import math
-#def f(u,a,t):
-#    print("v="); return u+a*t
-#    return u*t + 0.5*a*t**2
-#print(f(1,2,3))
 
 def suvat(u,a,t):   #define name of function
     v = u + a*t

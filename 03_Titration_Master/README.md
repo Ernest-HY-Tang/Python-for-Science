@@ -4,11 +4,12 @@
 This is a high-performance titration simulator built with **NumPy** and **Matplotlib**. The pH Titration Engine simulates the chemical transition of acids during neutralisation with a strong base, supporting both strong and weak acid models.
 
 ## Key Features of the Project:
+* **Object-Oriented Programming:** Utilises modular Acid, Base, and ActualTitration classes, allowing for swapping of chemical reactants without changing anything in the core simulation logic.
 * **Vectorised Calculations:** Uses NumPy `np.where` to process 1000+ data points instantly, way more efficient than Python loops.
 * **Weak Acid Support:** Implements the **Henderson-Hasselbalch** equation for the buffer region and salt hydrolysis for the equivalence point, using a variable acid dissociation constant.
 * **Visualisation:** * Marks the **Half-Equivalence** automatically ($pH = pK_a$).
     * Changing axis ticking based on user input volume.
-    * Annotated the equivalence point with real-time pH and Volume data.
+        * Annotated the equivalence point with real-time pH and Volume data.
 
 
 ## 🧪 Example Output
@@ -25,7 +26,7 @@ To run this simulation, you will need Python 3.x and the following libraries:
 
 ```bash
 pip install numpy matplotlib
-python titration_engine.py
+python titration_oop.py
 ```
 
 ## Progress:
@@ -37,15 +38,18 @@ python titration_engine.py
 
 **Day 5:** Refined the engine to accept weak acid inputs.
 
+**Day 6-8:** Refactored the inital engine using an OOP system.
+
 ## What I Learned:
 **Mathematical singularities:** When calculating the pH of a weak acid exactly at the equivalence point, the Henderson-Hasselbalch equation attempts to divide by zero (as the net amount tends to 0), causing the pH to spike.
 * From an engineering perspective, it is more beneficial to minimise the anomalies, producing a smooth curve. I implemented a small mask using `np.where` around the equivalence volume that bypasses the buffer equation and instead uses the salt hydrolysis formula ($pH = 7 + 0.5(pK_a + \log C_{salt})$).
 
 **Assigning Variables:** Instead of deriving a single mega-formula to handle all cases, splitting the function into manageable calculations lets me catch mistakes earlier. For example, instead of inputting different equations straight into the nested `np.where` function, I divided the pH calculations into three segments: the initial state, buffer zone, and excess base.
 
-
 **Testing Inputs:** Setting default inputs in the code (and changing to the user's input after debugging) is way more efficient than entering inputs for every run in the terminal.
 
 **NumPy Functions:** Specific commands such as `np.errstate`, `np.linspace`, `np.nditer` to handle arrays more efficiently.
 
 **Matplotlib Axis Ticking:** To avoid axis tick labels from cramming against each other, I can utilise the `max()` function to adapt to large range inputs.
+
+**Object-Oriented Programming:** A more efficient way to layout my code by using encapsulation, and isolating the impact of changes when more than one acids are involved.
